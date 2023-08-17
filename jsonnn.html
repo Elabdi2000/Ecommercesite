@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title> Catalogue outillage </title>
+        <!-- lien vers la bibliothèque bootstrap -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- lien vers le script contenant la fonction getXMLHttpRequest-->
+        <script type="text/javascript" src="oXHR.js"></script>
+        <script type="text/javascript">
+            // pointeur sur la position de l'article courant dans le catalogue
+            var index = 0;
+            // initialisation du catalogue
+    var catalogue = [
+	{   
+	    "nom": "marteau", 
+	    "desc": "pour enfoncer des clous",
+        "qte": 87,
+		"prix": 9,src:"img1.jpg"},
+    {
+        "nom": "cle de 12",
+        "desc": "pour les boulons du camion",
+        "qte": 25,
+        "prix": 12,"src":"img2.jpg"
+    },
+    {
+        "nom" : "tournevis" , 
+        "desc" : "pour démonter la table" , 
+        "qte" : 26 , 
+        "prix" : 6,"src":"img3.jpg"
+    },
+    {
+        "nom": "pinces multiples",
+        "desc": "pour bricoler le dimanche",
+        "qte": 2,
+        "prix": 17,"src":"img4.jpg"
+    },
+    {
+        "nom" : "scie à métaux" , 
+        "desc" : "pour couper la barrière" , 
+        "qte" : 78 , 
+        "prix" : 41,"src":"img5.jpg"
+    }
+];
+
+            function lireSuivant() {
+                // connaitre le nombre d'articles dans le catalogue
+                var longueur = catalogue.length;
+                // manipulation du DOM pour afficher les caractéristiques de l'article
+				document.getElementById("photo").innerHTML ="<img height='100px' width='150px' src='"+catalogue[index].src+"'>";
+                document.getElementById("nom").innerHTML = catalogue[index].nom;
+                document.getElementById("desc").innerHTML = catalogue[index].desc;
+                document.getElementById("qte").innerHTML = catalogue[index].qte;
+                document.getElementById("prix").innerHTML = catalogue[index].prix;
+                if (index < longueur - 1) {
+                    index++;
+                }
+            }
+            
+            function lirePrecedent() {
+			document.getElementById("photo").innerHTML ="<img height='100px' width='150px' src='"+catalogue[index].src+"'>";
+                document.getElementById("nom").innerHTML = catalogue[index].nom;
+                document.getElementById("desc").innerHTML = catalogue[index].desc;
+                document.getElementById("qte").innerHTML = catalogue[index].qte;
+                document.getElementById("prix").innerHTML = catalogue[index].prix;
+                if (index > 0) {
+                    index--;
+                }
+            }
+
+            // on initialise la lecture au premier élément
+            
+        </script>
+    </head>
+    <body onload="lireSuivant()">
+        <section  class="container">
+            <article name="données" class="well form-inline pull-left col-lg-5">
+                <legend>Outils au catalogue</legend>
+				<div id="photo"> </div>
+                <label>Nom</label> : <label id = "nom"></label><br>
+                <label>Description</label> : <label id = "desc"></label><br>
+                <label>Quantité</label> : <label id = "qte"></label><br>
+                <label>Prix</label> : <label id = "prix"></label><br>
+				
+                <button class="btn btn-primary" type="submit" onclick="lireSuivant()"><span class="glyphicon glyphicon-play"> </span> Lecture avant</button>
+                <button class="btn btn-primary" type="submit" onclick="lirePrecedent()"><span class="glyphicon glyphicon-step-backward"> </span> Lecture arrière</button>
+            </article>
+        </section>
+    </body>
+</html>
